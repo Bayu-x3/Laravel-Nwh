@@ -5,6 +5,8 @@ use App\Http\Controllers\SppController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,10 @@ use App\Http\Controllers\SiswaController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/welcome', function () {
+    return view('welcome');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,46 +35,28 @@ Route::get('/grafik', function () {
     return view('grafik');
 });
 
-// Bagian Spp
-Route::get('/spp', [SppController::class, 'index'])->name('spp.index');
-Route::get('/spp/create', [SppController::class, 'create'])->name('spp.create');
-Route::post('/spp', [SppController::class, 'store'])->name('spp.store');
+Route::resource('spp', SppController::class)->middleware('isLogin')->parameters([
+    'spp' => 'spp'
+]);
 
-Route::get('/spp/{id}', [SppController::class, 'show'])->name('spp.show');
+Route::resource('kelas', KelasController::class)->middleware('isLogin')->parameters([
+    'kelas' => 'kelas'
+]);
 
-Route::get('/spp/{id}/edit', [SppController::class, 'edit'])->name('spp.edit');
-Route::put('/spp/{id}', [SppController::class, 'update'])->name('spp.update');
+Route::resource('petugas', PetugasController::class)->middleware('isLogin')->parameters([
+    'petugas' => 'petugas'
+]);
 
-Route::delete('/spp/{id}', [SppController::class, 'destroy'])->name('spp.destroy');
-// End Spp
+Route::resource('siswa', SiswaController::class)->middleware('isLogin')->parameters([
+    'siswa' => 'siswa'
+]);
 
-// Bagian Kelas
-Route::get('/kelas', [KelasController::class, 'index'])->name('kelas.index');
-Route::get('/kelas/create', [KelasController::class, 'create'])->name('kelas.create');
-Route::post('/kelas', [KelasController::class, 'store'])->name('kelas.store');
+Route::resource('pembayaran', PembayaranController::class)->middleware('isLogin')->parameters([
+    'pembayaran' => 'pembayaran'
+]);
 
-Route::get('/kelas/{id}', [KelasController::class, 'show'])->name('kelas.show');
-
-Route::get('/kelas/{id}/edit', [KelasController::class, 'edit'])->name('kelas.edit');
-Route::put('/kelas/{id}', [KelasController::class, 'update'])->name('kelas.update');
-
-Route::delete('/kelas/{id}', [KelasController::class, 'destroy'])->name('kelas.destroy');
-// End Kelas
-
-//Bagian Petugas
-Route::get('/petugas', [PetugasController::class, 'index'])->name('petugas.index');
-Route::get('/petugas/create', [PetugasController::class, 'create'])->name('petugas.create');
-Route::post('/petugas', [PetugasController::class, 'store'])->name('petugas.store');
-
-Route::get('/petugas/{id}', [PetugasController::class, 'show'])->name('petugas.show');
-
-Route::get('/petugas/{id}/edit', [PetugasController::class, 'edit'])->name('petugas.edit');
-Route::put('/petugas/{id}', [PetugasController::class, 'update'])->name('petugas.update');
-
-Route::delete('/petugas/{id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
-//End Petugas
-
-//Bagian Siswa
-Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
-Route::get('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
-Route::post('/siswa', [SiswaController::class, 'store'])->name('siswa.store');
+Route::get('/sesi', [SessionController::class, 'index'])->middleware('isUsers');
+Route::get('/sesi/logout', [SessionController::class, 'logout']);
+Route::post('/sesi/login', [SessionController::class, 'login'])->middleware('isUsers');
+Route::get('/sesi/register', [SessionController::class, 'register'])->middleware('isUsers');
+Route::post('/sesi/create', [SessionController::class, 'create'])->middleware('isUsers');

@@ -21,11 +21,69 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
+    @if (Auth::check())
     <li class="nav-item active">
         <a class="nav-link" href="{{ asset('/grafik') }}">
             <i class="fa-solid fa-chart-line"></i>
             <span>Chart</span></a>
     </li>
+    @endif
+    @if (Auth::check())
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('spp.index') }}">
+            <i class="fa-solid fa-note-sticky"></i>
+            <span>Spp</span></a>
+    </li>
+    @endif
+    @if (Auth::check())
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('kelas.index') }}">
+            <i class="fa-solid fa-school-circle-check"></i>
+            <span>Kelas</span></a>
+    </li>
+    @endif
+    @if (Auth::check())
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('petugas.index') }}">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Petugas</span></a>
+    </li>
+    @endif
+    @if (Auth::check())
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('siswa.index') }}">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Siswa</span></a>
+    </li>
+    @endif
+    @if (Auth::check())
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('pembayaran.index') }}">
+            <i class="fa-solid fa-money-check-dollar"></i>
+            <span>Pembayaran</span></a>
+    </li>
+    @endif
+    @if (Auth::check() === false)
+    <li class="nav-item active">
+        <a class="nav-link" href="sesi">
+            <i class="fa-solid fa-money-check-dollar"></i>
+            <span>Login</span></a>
+    </li>
+    @endif
+    @if (Auth::check() === false)
+    <li class="nav-item active">
+        <a class="nav-link" href="sesi/register">
+            <i class="fa-solid fa-money-check-dollar"></i>
+            <span>Register</span></a>
+    </li>
+    @endif
+    @if (Auth::check())
+    <li class="nav-item active">
+        <a class="nav-link" href="sesi/logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span></a>
+    </li>
+    @endif
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

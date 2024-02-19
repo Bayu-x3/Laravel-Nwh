@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
            SiswaSeeder::class,
            SppSeeder::class,
            PembayaranSeeder::class,
+           UserSeeders::class,
         ]);
     }
 }

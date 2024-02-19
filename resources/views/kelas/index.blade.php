@@ -1,7 +1,7 @@
 @extends('template.master')
 
 @section('h1')
-    SPP
+    Kelas
 @endsection
 @section('rowTengah')
     @if ($message = Session::get('success'))
@@ -28,10 +28,10 @@
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">DataTables SPP</h6>
-                                <a href="{{ route('spp.create') }}" class="btn btn-sm btn-outline-primary">
+                                <h6 class="m-0 font-weight-bold text-primary">DataTables Kelas</h6>
+                                <a href="{{ route('kelas.create') }}" class="btn btn-sm btn-outline-primary">
                                     <i class="fa fa-plus"></i><br>
-                                    Tambah Spp
+                                    Tambah Kelas
                                 </a>
                             </div>
                             <div class="card-body">
@@ -39,32 +39,32 @@
                                     <table id="table" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>ID SPP</th>
-                                                <th>TAHUN</th>
-                                                <th>NOMINAL</th>
+                                                <th>ID KELAS</th>
+                                                <th>NAMA KELAS  </th>
+                                                <th>KOMPETENSI KEAHLIAN</th>
                                                 <th>ACTION</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($spp as $key => $value)
+                                            @forelse ($kelas as $key => $value)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $value->tahun }}</td>
-                                                    <td>{{ $value->nominal }}</td>
+                                                    <td>{{ $value->nama_kelas }}</td>
+                                                    <td>{{ $value->kompetensi_keahlian }}</td>
                                                     <td>
-                                                        <a href="{{ route('spp.show', $value->id_spp) }}"
+                                                        <a href="{{ route('kelas.show', $value->id_kelas) }}"
                                                             class="btn btn-sm btn-info">
                                                             Detail
                                                         </a>
-                                                        <a href="{{ route('spp.edit', $value->id_spp) }}"
+                                                        <a href="{{ route('kelas.edit', $value->id_kelas) }}"
                                                             class="btn btn-sm btn-primary">
                                                             Edit
                                                         </a>
-                                                        <form action="{{ route('spp.destroy', $value->id_spp) }}"
+                                                        <form action="{{ route('kelas.destroy', $value->id_kelas) }}"
                                                             method="POST" style="display: inline;">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                            <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                                         </form>
                                                     </td>
                                                 </tr>

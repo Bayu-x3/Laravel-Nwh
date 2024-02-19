@@ -1,7 +1,7 @@
 @extends('template.master')
 
 @section('h1')
-    SPP
+    PETUGAS
 @endsection
 @section('rowTengah')
     @if ($message = Session::get('success'))
@@ -28,10 +28,10 @@
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">DataTables SPP</h6>
-                                <a href="{{ route('spp.create') }}" class="btn btn-sm btn-outline-primary">
+                                <h6 class="m-0 font-weight-bold text-primary">DataTables PETUGAS</h6>
+                                <a href="{{ route('petugas.create') }}" class="btn btn-sm btn-outline-primary">
                                     <i class="fa fa-plus"></i><br>
-                                    Tambah Spp
+                                    Tambah PETUGAS
                                 </a>
                             </div>
                             <div class="card-body">
@@ -39,39 +39,42 @@
                                     <table id="table" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>ID SPP</th>
-                                                <th>TAHUN</th>
-                                                <th>NOMINAL</th>
+                                                <th>ID PETUGAS</th>
+                                                <th>USERNAME</th>
+                                                <th>PASSWORD</th>
+                                                <th>NAMA PETUGAS</th>
+                                                <th>LEVEL</th>
                                                 <th>ACTION</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($spp as $key => $value)
+                                            @forelse ($petugas as $key => $value)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $value->tahun }}</td>
-                                                    <td>{{ $value->nominal }}</td>
+                                                    <td>{{ $value->username }}</td>
+                                                    <td>{{ $value->password }}</td>
+                                                    <td>{{ $value->nama_petugas }}</td>
+                                                    <td>{{ $value->level }}</td>
                                                     <td>
-                                                        <a href="{{ route('spp.show', $value->id_spp) }}"
+                                                        <a href="{{ route('petugas.show', $value->id_petugas) }}"
                                                             class="btn btn-sm btn-info">
                                                             Detail
                                                         </a>
-                                                        <a href="{{ route('spp.edit', $value->id_spp) }}"
+                                                        <a href="{{ route('petugas.edit', $value->id_petugas) }}"
                                                             class="btn btn-sm btn-primary">
                                                             Edit
                                                         </a>
-                                                        <form action="{{ route('spp.destroy', $value->id_spp) }}"
+                                                        <form action="{{ route('petugas.destroy', $value->id_petugas) }}"
                                                             method="POST" style="display: inline;">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                            <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                                         </form>
-                                                    </td>
                                                 </tr>
 
                                             @empty
                                                 <tr>
-                                                    <td colspan="4" class="text-center">Data Masih Kosong</td>
+                                                    <td colspan="6" class="text-center">Data Masih Kosong</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

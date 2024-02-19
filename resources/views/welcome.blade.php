@@ -1,4 +1,4 @@
-@extends('template.master')
+@extends('grafik')
 
 @section('h1')
     Welcome Page
@@ -86,4 +86,6 @@
             </div>
         </div>
     </div>
+    @section('rowTengah')
+    @endsection
 @endsection
