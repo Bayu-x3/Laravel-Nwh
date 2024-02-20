@@ -35,28 +35,28 @@ Route::get('/grafik', function () {
     return view('grafik');
 });
 
-Route::resource('spp', SppController::class)->middleware('isLogin')->parameters([
+Route::resource('spp', SppController::class)->parameters([
     'spp' => 'spp'
 ]);
 
-Route::resource('kelas', KelasController::class)->middleware('isLogin')->parameters([
+Route::resource('kelas', KelasController::class)->parameters([
     'kelas' => 'kelas'
 ]);
 
-Route::resource('petugas', PetugasController::class)->middleware('isLogin')->parameters([
+Route::resource('petugas', PetugasController::class)->parameters([
     'petugas' => 'petugas'
 ]);
 
-Route::resource('siswa', SiswaController::class)->middleware('isLogin')->parameters([
+Route::resource('siswa', SiswaController::class)->parameters([
     'siswa' => 'siswa'
 ]);
 
-Route::resource('pembayaran', PembayaranController::class)->middleware('isLogin')->parameters([
+Route::resource('pembayaran', PembayaranController::class)->parameters([
     'pembayaran' => 'pembayaran'
 ]);
 
-Route::get('/sesi', [SessionController::class, 'index'])->middleware('isUsers');
+Route::get('/sesi', [SessionController::class, 'index']);
 Route::get('/sesi/logout', [SessionController::class, 'logout']);
-Route::post('/sesi/login', [SessionController::class, 'login'])->middleware('isUsers');
-Route::get('/sesi/register', [SessionController::class, 'register'])->middleware('isUsers');
-Route::post('/sesi/create', [SessionController::class, 'create'])->middleware('isUsers');
+Route::post('/sesi/login', [SessionController::class, 'login']);
+Route::get('/sesi/register', [SessionController::class, 'register']);
+Route::post('/sesi/create', [SessionController::class, 'create']);
