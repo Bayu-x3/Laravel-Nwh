@@ -4,9 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SppController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\PetugasController;
-use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\PembayaranController;
-use App\Http\Controllers\SessionController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+// use App\Http\Controllers\SiswaController;
+// use App\Http\Controllers\PembayaranController;
+// use App\Http\Controllers\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,28 +38,38 @@ Route::get('/grafik', function () {
     return view('grafik');
 });
 
-Route::resource('spp', SppController::class)->parameters([
-    'spp' => 'spp'
-]);
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('/register', 'create')->name('register.create');
+    Route::post('/register', 'store')->name('register.store');
+});
 
-Route::resource('kelas', KelasController::class)->parameters([
-    'kelas' => 'kelas'
-]);
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/login', 'login')->name('login.login');
+    Route::post('/authenticate', 'authenticate')->name('login.authenticate');
+    Route::post('/logout', 'logout')->name('login.logout');
+});
 
-Route::resource('petugas', PetugasController::class)->parameters([
-    'petugas' => 'petugas'
-]);
+// Route::controller(DashboardController::class)->group(function () {
+//     Route::get('/dashboard/petugas', 'petugas')->name('dashboard.petugas');
+//     Route::get('/dashboard/admin', 'admin')->name('dashboard.admin');
+// });
 
-Route::resource('siswa', SiswaController::class)->parameters([
-    'siswa' => 'siswa'
-]);
+Route::middleware(['can:manage_petugas'])->group(function () {
+    Route::get('/dashboard/petugas', [DashboardController::class, 'petugas'])->name('dashboard.petugas');
+});
 
-Route::resource('pembayaran', PembayaranController::class)->parameters([
-    'pembayaran' => 'pembayaran'
-]);
+Route::middleware(['can:manage_admin'])->group(function () {
+    Route::get('/dashboard/admin', [DashboardController::class, 'admin'])->name('dashboard.admin');
 
-Route::get('/sesi', [SessionController::class, 'index']);
-Route::get('/sesi/logout', [SessionController::class, 'logout']);
-Route::post('/sesi/login', [SessionController::class, 'login']);
-Route::get('/sesi/register', [SessionController::class, 'register']);
-Route::post('/sesi/create', [SessionController::class, 'create']);
+    Route::resource('spp', SppController::class)->parameters([
+        'spp' => 'spp'
+    ]);
+
+    Route::resource('kelas', KelasController::class)->parameters([
+        'kelas' => 'kelas'
+    ]);
+    
+    Route::resource('petugas', PetugasController::class)->parameters([
+        'petugas' => 'petugas'
+    ]);
+});
