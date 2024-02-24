@@ -39,7 +39,7 @@ Route::get('/grafik', function () {
 });
 
 
-Route::middleware(['guest'])->group(function () {
+Route::middleware('[guest]')->group(function () {
     Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
     Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 

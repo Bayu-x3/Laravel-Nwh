@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreAuthRequest;
 use App\Http\Requests\StoreRegisterRequest;
+use Illuminate\Support\Facades\Gate;
 
 class AuthController extends Controller
 {

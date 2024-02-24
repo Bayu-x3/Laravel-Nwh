@@ -28,6 +28,19 @@
     </li>    
     @endcan
 
+    @guest
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ url('login') }}">
+            <i class="fa-solid fa-money-check-dollar"></i>
+            <span>Login</span></a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ url('register') }}">
+            <i class="fa-solid fa-money-check-dollar"></i>
+            <span>Register</span></a>
+    </li>
+    @endguest
+
     <!-- Divider -->
     <hr class="sidebar-divider">
     <li class="nav-item active">
@@ -60,18 +73,6 @@
     </li>
     @endcan
 
-    @guest
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ url('login') }}">
-            <i class="fa-solid fa-money-check-dollar"></i>
-            <span>Login</span></a>
-    </li>
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ url('register') }}">
-            <i class="fa-solid fa-money-check-dollar"></i>
-            <span>Register</span></a>
-    </li>
-    @endguest
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
