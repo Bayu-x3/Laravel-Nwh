@@ -59,31 +59,19 @@
             <span>Petugas</span></a>
     </li>
     @endcan
-    {{-- <li class="nav-item active">
-        <a class="nav-link" href="{{ route('siswa.index') }}">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <span>Siswa</span></a>
-    </li>
+
+    @guest
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('pembayaran.index') }}">
-            <i class="fa-solid fa-money-check-dollar"></i>
-            <span>Pembayaran</span></a>
-    </li>
-    <li class="nav-item active">
-        <a class="nav-link" href="sesi">
+        <a class="nav-link" href="{{ url('login') }}">
             <i class="fa-solid fa-money-check-dollar"></i>
             <span>Login</span></a>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="sesi/register">
+        <a class="nav-link" href="{{ url('register') }}">
             <i class="fa-solid fa-money-check-dollar"></i>
             <span>Register</span></a>
     </li>
-    <li class="nav-item active">
-        <a class="nav-link" href="sesi/logout">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span>Logout</span></a>
-    </li>f --}}
+    @endguest
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

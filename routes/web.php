@@ -38,17 +38,21 @@ Route::get('/grafik', function () {
     return view('grafik');
 });
 
-Route::controller(RegisterController::class)->group(function () {
-    Route::get('/register', 'create')->name('register.create');
-    Route::post('/register', 'store')->name('register.store');
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
+
+    Route::get('/login', [AuthController::class, 'login'])->name('login.login');
+    Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('login.authenticate');
 });
 
-Route::controller(AuthController::class)->group(function () {
-    Route::get('/login', 'login')->name('login.login');
-    Route::post('/authenticate', 'authenticate')->name('login.authenticate');
-    Route::post('/logout', 'logout')->name('login.logout');
-});
 
+Route::controller(AuthController::class)->group(function() {
+Route::post('/logout', 'logout')->name('login.logout');
+});
+ 
 // Route::controller(DashboardController::class)->group(function () {
 //     Route::get('/dashboard/petugas', 'petugas')->name('dashboard.petugas');
 //     Route::get('/dashboard/admin', 'admin')->name('dashboard.admin');
