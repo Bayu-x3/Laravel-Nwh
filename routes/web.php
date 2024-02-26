@@ -7,8 +7,8 @@ use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
-// use App\Http\Controllers\SiswaController;
-// use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\PembayaranController;
 // use App\Http\Controllers\SessionController;
 
 /*
@@ -38,16 +38,15 @@ Route::get('/grafik', function () {
     return view('grafik');
 });
 
-
-Route::middleware('[guest]')->group(function () {
+Route::middleware(['guest'])->group(function () {
     Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
     Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 
     Route::get('/login', [AuthController::class, 'login'])->name('login.login');
     Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('login.authenticate');
-});
 
+});
 
 Route::controller(AuthController::class)->group(function() {
 Route::post('/logout', 'logout')->name('login.logout');
@@ -75,5 +74,13 @@ Route::middleware(['can:manage_admin'])->group(function () {
     
     Route::resource('petugas', PetugasController::class)->parameters([
         'petugas' => 'petugas'
+    ]);
+
+    Route::resource('siswa', SiswaController::class)->parameters([
+        'siswa' => 'siswa'
+    ]);
+
+    Route::resource('pembayaran',   PembayaranController::class)->parameters([
+        'pembayaran' => 'pembayaran'
     ]);
 });

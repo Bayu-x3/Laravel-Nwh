@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 
@@ -17,9 +18,9 @@ class UserSeeders extends Seeder
     {
         DB::table('users')->insert([
             "id" => random_int(1, 1000),
-            "username" => Str::random(10),
-            "password" => Str::random(10),
-            "nama_petugas" => Str::random(10),
+            "username" => "Ayanokouji",
+            "password" => Hash::make('12345678'),
+            "nama_petugas" => "Ayanokouji",
             "level" => "petugas",
         ]);
     }

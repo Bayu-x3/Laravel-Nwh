@@ -14,7 +14,7 @@
     <!-- Nav Item - Dashboard -->
     @can('manage_petugas')
     <li class="nav-item active">
-        <a class="nav-link" href="{{ asset('/') }}">
+        <a class="nav-link" href="{{ route('dashboard.petugas')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>    
@@ -22,7 +22,7 @@
 
     @can('manage_admin')
     <li class="nav-item active">
-        <a class="nav-link" href="{{ asset('/') }}">
+        <a class="nav-link" href="{{ route('dashboard.admin')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>    
@@ -70,6 +70,22 @@
         <a class="nav-link" href="{{ route('petugas.index') }}">
             <i class="fa-solid fa-user-plus"></i>
             <span>Petugas</span></a>
+    </li>
+    @endcan
+
+    @can('manage_admin')   
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('siswa.index') }}">
+            <i class="fa-solid fa-person"></i>
+            <span>Siswa</span></a>
+    </li>
+    @endcan
+
+    @can('manage_admin')   
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('pembayaran.index') }}">
+            <i class="fa-solid fa-dollar"></i>
+            <span>Pembayaran</span></a>
     </li>
     @endcan
 
