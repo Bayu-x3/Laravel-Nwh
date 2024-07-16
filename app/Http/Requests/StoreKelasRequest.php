@@ -22,7 +22,7 @@ class StoreKelasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama_kelas' => 'required|min:3',
+            'nama_kelas' => 'required|min:1',
             'kompetensi_keahlian' => 'required|min:3',
         ];
     }

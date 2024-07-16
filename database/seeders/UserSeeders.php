@@ -18,7 +18,7 @@ class UserSeeders extends Seeder
     {
         DB::table('users')->insert([
             "id" => random_int(1, 1000),
-            "username" => "Ayanokouji",
+            "username" => "Ayanokouji15",
             "password" => Hash::make('12345678'),
             "nama_petugas" => "Ayanokouji",
             "level" => "petugas",

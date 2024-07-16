@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Spp;
+use Illuminate\Routing\Controller;
 use App\Http\Requests\StoreSppRequest;
 use App\Http\Requests\UpdateSppRequest;
 
@@ -66,5 +67,5 @@ class SppController extends Controller
     {
         $spp->delete();
         return redirect()->route('spp.index');
-    }
-}
+    }  
+}    

@@ -59,6 +59,10 @@ Route::post('/logout', 'logout')->name('login.logout');
 
 Route::middleware(['can:manage_petugas'])->group(function () {
     Route::get('/dashboard/petugas', [DashboardController::class, 'petugas'])->name('dashboard.petugas');
+
+    Route::resource('pembayaran', PembayaranController::class)->parameters([
+        'pembayaran' => 'pembayaran'
+    ]);
 });
 
 Route::middleware(['can:manage_admin'])->group(function () {

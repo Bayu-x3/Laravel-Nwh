@@ -18,6 +18,13 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>    
+    @endcan 
+
+    @can('manage_petugas')
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('pembayaran.index') }}">
+            <i class="fa-solid fa-dollar"></i>
+            <span>Pembayaran</span></a>
     @endcan
 
     @can('manage_admin')

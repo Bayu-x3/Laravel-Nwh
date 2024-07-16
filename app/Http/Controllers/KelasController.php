@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Siswa;
+use Illuminate\Routing\Controller;
 use App\Http\Requests\StoreKelasRequest;
 use App\Http\Requests\UpdateKelasRequest;
 
@@ -64,8 +66,8 @@ class KelasController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Kelas $kelas)
-    {
-        $kelas->delete();
-        return redirect()->route('kelas.index');
-    }
+{
+    $kelas->delete();
+    return redirect()->route('kelas.index')->with('success', 'Berhasil menghapus data kelas');
+}   
 }
